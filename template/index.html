@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Web Technology - Lab 1</title>
+  <link href="inc/StyleSheet.css" rel="stylesheet" />
+  <style>
+    #mydiv {
+      border: 1px solid rgb(8, 8, 8);
+      background-color: rgb(34, 0, 215);
+      font-size: 18px;
+      text-align: center;
+    }
+
+    button {
+      width: 50px;
+      padding: 5px;
+      color: rgb(1, 0, 8);
+      float: left;
+      margin: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mydiv">
+    <div style="border: 2px solid black; width: 360px; min-height: 120px; margin: 10px auto;">
+        <div id="result" style="border: 2px solid black; width: 200px; min-height: 30px; margin: 20px auto;background-color:rgb(243, 241, 241);"></div>
+      
+        <!-- Row 1 -->
+      <div class="buttons">
+        <button class="but">MC</button>
+        <button class="but">MR</button>
+        <button class="but">M+</button>
+        <button class="but">M-</button>
+        <button class="but">MS</button>
+        <button class="but">M<sup>v</sup></button>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="buttons">
+        <button class="but">2<sup>nd</sup></button>
+        <button class="but">π</button>
+        <button class="but">e</button>
+        <button class="but">C</button>
+        <button class="but">back</button>
+      </div>
+      <!-- Row 3 -->
+      <div class="buttons">
+        <button class="but">x<sup>2</sup></button>
+        <button class="but">1/X</button>
+        <button class="but">|X|</button>
+        <button class="but">exp</button>
+        <button class="but">mod</button>
+      </div>
+        <!-- Row 4 -->
+      <div class="buttons">
+        <button class="but"><sup>2</sup>√</button>
+        <button class="but">(</button>
+        <button class="but">)</button>
+        <button class="but">n!</button>
+        <button class="but">/</button>
+        </div>
+        <!-- Row 5 -->
+     <div class="buttons">
+        <button class="but">x<sup>y</sup></button>
+        <button class="but">7</button>
+        <button class="but">8</button>
+        <button class="but">9</button>
+        <button class="but">*</button>
+        </div>
+        <!-- Row 6 -->
+     <div class="buttons">
+        <button class="but">10<sup>x</sup></button>
+        <button class="but">4</button>
+        <button class="but">5</button>
+        <button class="but">6</button>
+        <button class="but">-</button>
+        </div>
+        <!-- Row 7 -->
+     <div class="buttons">
+        <button class="but">log</button>
+        <button class="but">1</button>
+        <button class="but">2</button>
+        <button class="but">3</button>
+        <button class="but">+</button>
+        </div>
+         <!-- Row 8 -->
+     <div class="buttons">
+        <button class="but">in</button>
+        <button class="but">+/-</button>
+        <button class="but">0</button>
+        <button class="but">.</button>
+        <button class="but">=</button>
+        </div>
+    </div>
+  </div>
+
+  <div style="clear:both; margin:10px"></div>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+      const resultElement = document.getElementById('result');
+      let currentInput = '';
+
+      // Function to update the result display
+      const updateResult = () => {
+        resultElement.innerText = currentInput;
+      };
+
+      // Function to handle button clicks
+      const handleButtonClick = (value) => {
+        if (value === '=') {
+          try {
+            currentInput = eval(currentInput).toString();
+          } catch (error) {
+            currentInput = 'Error';
+          }
+        } else if (value === 'C') {
+          currentInput = '';
+        } else if (value === 'back') {
+          currentInput = currentInput.slice(0, -1);
+        } else {
+          currentInput += value;
+        }
+
+        updateResult();
+      };
+
+      // Attach click event listeners to all buttons
+      const buttons = document.querySelectorAll('.but');
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          handleButtonClick(button.innerText);
+        });
+      });
+    });
+    // custom config for the MTW app
+    const mtwAppConfig = {
+      border: true // app border in the MTW page
+    }
+  </script>
+  <script src="https://morethanwallet.com/appstore/index.js"></script>
+</body>
+</html>
